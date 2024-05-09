@@ -6,6 +6,13 @@ public class UserInputHandler : MonoBehaviour
 {
     public delegate void TapAction(Touch t);
     public static event TapAction OnTap;
+
+    public delegate void PanBeganAction(Touch t);
+    public static event PanBeganAction OnPanBegan;
+
+    public delegate void PanHeldAction(Touch t);
+    public static event TapAction OnPanHeld;
+
     public float tapMaxMovement = 50f;
 
     private Vector2 movement;
