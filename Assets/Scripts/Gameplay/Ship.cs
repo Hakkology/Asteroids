@@ -13,6 +13,7 @@ public class Ship : MonoBehaviour {
 
 	// A reference to the transform where bullets will be spawned from.
 	public Transform launcher;
+	public bool useAccelerometer = true;
 	#endregion
 
 	#region PRIVATE VARIABLES
@@ -136,6 +137,21 @@ public class Ship : MonoBehaviour {
 		Quaternion startRotation = transform.rotation;
 		Quaternion endRotation = Quaternion.LookRotation(point, Vector3.back);
 		transform.rotation = Quaternion.RotateTowards(startRotation, endRotation, rotationSpeed * Time.deltaTime);
+	}
+
+	private void MoveWithAcceleration(Vector3 acceleration)
+	{
+		if (!turning)
+		{
+			acceleration.z = 0;
+
+			if (acceleration.sqrMagnitude >= 0.03f)
+			{
+				Vector3 targetPoint = transform.position + acceleration;
+				GetComponent<Rigidbody2D>().AddForce(transform.forward * movementSpeed * Time.deltaTime);
+				TurnTowardsPointUpdate(targetPoint);
+			}
+		}
 	}
 	
 	#endregion
