@@ -32,10 +32,14 @@ public class Ship : MonoBehaviour {
 	private void OnEnable()
 	{
 		UserInputHandler.OnTap += TurnTowardsTouch;
+		UserInputHandler.OnPanBegan += StopTurn;
+		UserInputHandler.OnPanHeld += MoveTowardsTouch;
 	}
 	private void OnDisable()
 	{
 		UserInputHandler.OnTap -= TurnTowardsTouch;
+		UserInputHandler.OnPanBegan -= StopTurn;
+		UserInputHandler. OnPanHeld -= MoveTowardsTouch;
 	}
 
 	#endregion
@@ -111,6 +115,28 @@ public class Ship : MonoBehaviour {
 		GetComponent<Collider2D>().enabled = true;
 	}
 
+	private void StopTurn(Touch t)
+	{
+		StopCoroutine(TURN_COROUTINE_NAME);
+		turning = false;
+	}
+
+	private void MoveTowardsTouch(Touch t)
+	{
+		Vector3 targetPoint = Camera.main.ScreenToWorldPoint(t.position);
+		GetComponent<Rigidbody2D>().AddForce(transform.forward * movementSpeed * Time.deltaTime);
+		TurnTowardsPointUpdate(targetPoint);
+	}
+
+	private void TurnTowardsPointUpdate(Vector3 point)
+	{
+		point = point - transform.position;
+		point.z = transform.position.z;
+
+		Quaternion startRotation = transform.rotation;
+		Quaternion endRotation = Quaternion.LookRotation(point, Vector3.back);
+		transform.rotation = Quaternion.RotateTowards(startRotation, endRotation, rotationSpeed * Time.deltaTime);
+	}
 	
 	#endregion
 }
