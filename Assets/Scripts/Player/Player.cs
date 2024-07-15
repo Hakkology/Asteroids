@@ -9,7 +9,7 @@ public class Player : SpaceObject
     public float turning { get; set; }
     public bool thrusting { get; set; }
 
-    [SerializeField] private float turnSpeed = 1.0f;
+    [SerializeField] public float turnSpeed = 1.0f;
 
     protected override void Awake()
     {

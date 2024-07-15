@@ -1,45 +1,37 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TouchController
 {
     private Player player;
-    private Rect leftJoystickArea;
-    private Rect thrustArea;
 
     public TouchController(Player player)
     {
         this.player = player;
-        leftJoystickArea = new Rect(0, 0, Screen.width * 0.15f, Screen.height * 0.15f);
-        thrustArea = new Rect(0, 0, Screen.width, Screen.height);
     }
 
     public void HandleTouchInput()
     {
-        player.turning = 0f;
-
-        foreach (Touch touch in Input.touches)
+        if (Input.touchCount > 0)
         {
-            Vector2 touchPosition = touch.position;
-            player.thrusting = thrustArea.Contains(touchPosition) && touch.phase != TouchPhase.Ended;
+            Touch touch = Input.GetTouch(0); // İlk dokunmayı al
 
-            if (leftJoystickArea.Contains(touchPosition))
-            {
-                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-                {
-                    Vector2 joystickDirection = touchPosition - new Vector2(leftJoystickArea.x + leftJoystickArea.width / 2, leftJoystickArea.y + leftJoystickArea.height / 2);
-                    joystickDirection = joystickDirection.normalized;
-                    // Joystick hareketinin yönüne göre dönüş değerini ayarla
-                    player.turning = joystickDirection.x < 0 ? 1.0f : -1.0f;
-                }
-                else if (touch.phase == TouchPhase.Ended)
-                {
-                    player.turning = 0.0f;  // Dönüşü sıfırla
-                }
-            }
-            else if (thrustArea.Contains(touchPosition) && touch.phase != TouchPhase.Ended)
-            {
-                player.thrusting = true;  // Thrusting'i aktif et
-            }
+            Vector2 directionToTouch = Camera.main.ScreenToWorldPoint(touch.position) - player.transform.position;
+            float angleDifference = Mathf.DeltaAngle(player.transform.eulerAngles.z, Mathf.Atan2(directionToTouch.y, directionToTouch.x) * Mathf.Rad2Deg - 90f);
+
+            if (Mathf.Abs(angleDifference) > 1f) // Eğer belirli bir açı farkı varsa
+                player.turning = MathF.Max(player.turnSpeed, angleDifference / Mathf.Abs(angleDifference)) ;
+            
+            else
+                player.turning = 0;
+
+            player.thrusting = true; 
+        }
+        else
+        {
+            player.thrusting = false; 
+            player.turning = 0; 
         }
     }
 }
