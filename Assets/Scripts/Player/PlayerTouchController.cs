@@ -1,16 +1,20 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TouchController
 {
     private Player player;
+    public Button shootButton;
 
-    public TouchController(Player player)
+    public TouchController(Player player, Button shootButton)
     {
         this.player = player;
+        this.shootButton = shootButton;
+        shootButton.onClick.AddListener(OnShootButtonPressed);
     }
-
+    private void OnShootButtonPressed() => player.Shoot();
     public void HandleTouchInput()
     {
         if (Input.touchCount > 0)

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : SpaceObject
 {
+    public Bullet bulletPrefab;
     public static event Action<bool> OnThrustChanged;
     public static event Action<float> OnTurnChanged;
 
@@ -33,6 +34,11 @@ public class Player : SpaceObject
             rb.AddForce(this.transform.up * speed);
         if (turning != 0)
             rb.AddTorque(turning * turnSpeed);
+    }
+
+    public void Shoot(){
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bullet.ThrowProjectile(transform.up);
     }
 
     public void ChangeThrust(bool thrust) => OnThrustChanged?.Invoke(thrust);

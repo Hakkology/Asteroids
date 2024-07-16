@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public Button shootButton;
+    
     private Player player;
     private KeyboardController keyboardController;
     private TouchController touchController;
@@ -10,7 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         player = GetComponent<Player>();
         keyboardController = new KeyboardController(player);
-        touchController = new TouchController(player);
+        touchController = new TouchController(player, shootButton);
     }
 
     void Update()

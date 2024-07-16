@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyboardController
 {
     private Player player;
 
+
     public KeyboardController(Player player)
     {
         this.player = player;
+
     }
+
 
     public void HandleKeyboardInput()
     {
@@ -21,5 +25,10 @@ public class KeyboardController
             player.turning = -1.0f;
         
         player.ChangeTurn(player.turning);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            player.Shoot();
+        }
     }
 }
