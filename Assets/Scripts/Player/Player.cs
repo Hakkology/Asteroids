@@ -37,8 +37,13 @@ public class Player : SpaceObject
     }
 
     public void Shoot(){
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        bullet.ThrowProjectile(transform.up);
+        Bullet bullet = BulletPoolManager.Instance.GetBullet();
+        if (bullet != null)
+        {
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.ThrowProjectile(transform.up);
+        }
     }
 
     public void ChangeThrust(bool thrust) => OnThrustChanged?.Invoke(thrust);

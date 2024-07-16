@@ -122,6 +122,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1033723888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033723890}
+  - component: {fileID: 1033723889}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1033723889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033723888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687a98a41c8c51d4bb534fef2694d266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2185441333535937053, guid: a6d599c5f2b75908fa5d8f89ffa26297, type: 3}
+  poolSize: 15
+--- !u!4 &1033723890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033723888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1212757845
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -60, y: 60}
-  m_SizeDelta: {x: 240, y: 100}
+  m_AnchoredPosition: {x: -40, y: 40}
+  m_SizeDelta: {x: 180, y: 80}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1675763891
 MonoBehaviour:
@@ -609,7 +655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   bulletPrefab: {fileID: 2185441333535937053, guid: a6d599c5f2b75908fa5d8f89ffa26297, type: 3}
-  turnSpeed: 0.75
+  turnSpeed: 0.5
 --- !u!114 &1792534819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,3 +992,4 @@ SceneRoots:
   - {fileID: 1792534815}
   - {fileID: 1279703049}
   - {fileID: 1212757846}
+  - {fileID: 1033723890}
