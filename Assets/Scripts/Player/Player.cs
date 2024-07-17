@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : SpaceObject
 {
     public Bullet bulletPrefab;
     public static event Action<bool> OnThrustChanged;
     public static event Action<float> OnTurnChanged;
+    public UnityEvent onPlayerDied;
 
     public float turning { get; set; }
     public bool thrusting { get; set; }
@@ -43,6 +45,17 @@ public class Player : SpaceObject
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.ThrowProjectile(transform.up);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.layer == 7)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+
+            onPlayerDied.Invoke();
+            gameObject.SetActive(false);
         }
     }
 

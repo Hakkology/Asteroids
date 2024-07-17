@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1033723890}
   - component: {fileID: 1033723889}
   - component: {fileID: 1033723891}
+  - component: {fileID: 1033723892}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -185,8 +186,23 @@ MonoBehaviour:
   spawnRate: 3
   spawnDistance: 12
   spawnDelay: 0
-  trajectoryVarience: 15
+  trajectoryVariance: 15
   spawnAmount: 2
+--- !u!114 &1033723892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033723888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc95859f11beb82408a012d947b57a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1792534818}
+  lives: 3
+  respawnTime: 3
 --- !u!1 &1212757845
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +340,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -40, y: 40}
-  m_SizeDelta: {x: 180, y: 80}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1675763891
 MonoBehaviour:
@@ -390,8 +406,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 3fa9b96019b098244ae6ccf91e9d5b45, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -674,6 +690,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   bulletPrefab: {fileID: 2185441333535937053, guid: a6d599c5f2b75908fa5d8f89ffa26297, type: 3}
+  onPlayerDied:
+    m_PersistentCalls:
+      m_Calls: []
   turnSpeed: 0.5
 --- !u!114 &1792534819
 MonoBehaviour:
@@ -885,7 +904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031710648
 RectTransform:
   m_ObjectHideFlags: 0
