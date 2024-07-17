@@ -21,4 +21,9 @@ public class Bullet : SpaceObject
     {
         BulletPoolManager.Instance.ReturnBullet(this);
     }
+
+    void OnCollisionEnter2D(Collision2D other) 
+    {
+        ReturnToPool();
+    }
 }

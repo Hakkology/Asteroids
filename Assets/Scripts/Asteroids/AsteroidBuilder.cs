@@ -3,23 +3,23 @@ using UnityEngine;
 public class AsteroidBuilder
 {
     private Asteroid asteroidInstance;
-    private AsteroidSpawner spawner;
+    private Asteroid asteroidPrefab;
 
-    public AsteroidBuilder(AsteroidSpawner asteroidSpawner)
+    public AsteroidBuilder(Asteroid asteroidPrefab)
     {
-        spawner = asteroidSpawner;
+        this.asteroidPrefab = asteroidPrefab;
     }
 
     public AsteroidBuilder InstantiateAsteroid(Vector3 position, Quaternion rotation)
     {
-        asteroidInstance = MonoBehaviour.Instantiate(spawner.asteroidPrefab, position, rotation);
+        asteroidInstance = MonoBehaviour.Instantiate(asteroidPrefab, position, rotation);
         asteroidInstance.gameObject.SetActive(true);
         return this;
     }
 
     public AsteroidBuilder SetSize(float size)
     {
-        asteroidInstance.size = size * asteroidInstance.transform.localScale.x;
+        asteroidInstance.size = size;
         asteroidInstance.transform.localScale = Vector3.one * size;
         return this;
     }
