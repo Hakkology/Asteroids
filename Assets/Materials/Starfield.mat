@@ -27,9 +27,9 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _BlinkingSpeed: 0.001
-    - _StarDensity: 50
-    - _StarPower: 45
+    - _BlinkingSpeed: 0.00005
+    - _StarDensity: 500
+    - _StarPower: 800
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &1571236175240433042

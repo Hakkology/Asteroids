@@ -44,6 +44,7 @@ public class Asteroid : SpaceObject
                 CreateSplitAsteroid();
             }
 
+            GameManager.Instance.AddScore((int)size * 50);
             Destroy(gameObject);
             VFXManager.Instance.TriggerExplosion(transform);
         }
