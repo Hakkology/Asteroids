@@ -30,6 +30,12 @@ public class AsteroidBuilder
         return this;
     }
 
+    public AsteroidBuilder AddToCurrentAsteroids()
+    {
+        AsteroidSpawner.Instance.currentAsteroids.Add(asteroidInstance);
+        return this;
+    }
+
     public Asteroid Build()
     {
         return asteroidInstance;

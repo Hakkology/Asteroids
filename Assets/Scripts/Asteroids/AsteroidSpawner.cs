@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : BaseManager<AsteroidSpawner>
 {
     public Asteroid asteroidPrefab;
+    public List<Asteroid> currentAsteroids;
     public float spawnRate = 2.0f;
     public float spawnDistance = 15.0f;
     public float spawnDelay = 2.0f;
