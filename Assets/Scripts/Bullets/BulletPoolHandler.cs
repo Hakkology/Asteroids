@@ -1,26 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPoolManager : MonoBehaviour
+public class BulletPoolManager : BaseManager<BulletPoolManager>
 {
-    public static BulletPoolManager Instance { get; private set; }
-
     public Bullet bulletPrefab;
     private Queue<Bullet> bullets = new Queue<Bullet>();
     [SerializeField] private int poolSize = 15;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            InitializePool();
-        } 
-        else
-        {
-            Destroy(gameObject);
-        }
-
+        base.Awake();
+        InitializePool();
     }
 
     private void InitializePool()

@@ -1,22 +1,22 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : BaseManager<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public Player player;
     public int lives = 3;
     public float respawnTime = 3;
 
-    void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
         player.onPlayerDied.AddListener(PlayerDied);
     }
 
     void PlayerDied()
     {
         lives--;
+        VFXManager.Instance.TriggerExplosion(player.transform);
 
         if (lives <= 0)
             GameOver();

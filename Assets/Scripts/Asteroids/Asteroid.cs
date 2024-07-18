@@ -45,6 +45,7 @@ public class Asteroid : SpaceObject
             }
 
             Destroy(gameObject);
+            VFXManager.Instance.TriggerExplosion(transform);
         }
     }
 
