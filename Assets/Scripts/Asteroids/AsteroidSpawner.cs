@@ -27,6 +27,7 @@ public class AsteroidSpawner : BaseManager<AsteroidSpawner>
                 .InstantiateAsteroid(spawnPoint, spawnRotation)
                 .SetSize(Random.Range(asteroidPrefab.minSize, asteroidPrefab.maxSize))
                 .SetTrajectory(spawnRotation * -spawnDirection)
+                .AddToCurrentAsteroids()
                 .Build();
         }
     }

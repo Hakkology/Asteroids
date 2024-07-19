@@ -49,6 +49,6 @@ public class GameManager : BaseManager<GameManager>
 
     private void GameOver()
     {
-        // Oyun bitiş işlemleri
+        GUIManager.Instance.OpenRestartPanel();
     }
 }

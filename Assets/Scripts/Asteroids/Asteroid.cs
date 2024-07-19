@@ -58,7 +58,8 @@ public class Asteroid : SpaceObject
         new AsteroidBuilder(AsteroidSpawner.Instance.asteroidPrefab)
             .InstantiateAsteroid(currentPosition, transform.rotation)
             .SetSize(size * 0.5f) 
-            .SetTrajectory(Random.insideUnitCircle.normalized * speed) 
+            .SetTrajectory(Random.insideUnitCircle.normalized * speed)
+            .AddToCurrentAsteroids() 
             .Build();
     }
 }
