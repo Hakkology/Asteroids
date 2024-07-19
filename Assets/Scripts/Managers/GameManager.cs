@@ -17,6 +17,7 @@ public class GameManager : BaseManager<GameManager>
 
     void Start() {
         HUDManager.Instance.UpdateLivesText(lives);
+        HUDManager.Instance.UpdateScoreText(score);
     }
 
     void PlayerDied()
@@ -32,7 +33,10 @@ public class GameManager : BaseManager<GameManager>
     }
 
     public int GetScore() => score;
-    public void AddScore(int amount) => score += amount;
+    public void AddScore(int amount) {
+        score += amount;
+        HUDManager.Instance.UpdateScoreText(score);
+    } 
     private void Respawn()
     {
         player.transform.position = Vector3.zero;

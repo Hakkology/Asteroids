@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class UIPanel : MonoBehaviour, IUIPanel
+public class UIPanel : MonoBehaviour
 {
     protected virtual void Awake()
     {
@@ -12,13 +12,15 @@ public class UIPanel : MonoBehaviour, IUIPanel
     {
         gameObject.SetActive(true);
         transform.DOScale(Vector3.one, 0.5f)
-            .SetEase(Ease.OutBack);
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
     }
 
     public virtual void ClosePanel()
     {
         transform.DOScale(Vector3.zero, 0.5f)
             .SetEase(Ease.InBack)
+            .SetUpdate(true)
             .OnComplete(() => gameObject.SetActive(false));
     }
 }
