@@ -9,6 +9,6 @@ public class HUDManager : BaseManager<HUDManager> {
         livesText.text = "x" + lives;
     }
     public void UpdateScoreText(int score){
-        livesText.text = score.ToString();
+        scoreText.text = score.ToString();
     }
 }

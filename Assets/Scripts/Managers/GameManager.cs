@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : BaseManager<GameManager>
@@ -54,5 +55,20 @@ public class GameManager : BaseManager<GameManager>
     private void GameOver()
     {
         GUIManager.Instance.OpenRestartPanel();
+    }
+
+    public void RestartGame()
+    {
+        GUIManager.Instance.CloseRestartPanel();
+
+        foreach (var asteroid in AsteroidSpawner.Instance.currentAsteroids)
+            Destroy(asteroid.gameObject);
+        
+        AsteroidSpawner.Instance.currentAsteroids.Clear();
+
+        score = 0;
+        lives = 3;
+
+        Respawn();
     }
 }

@@ -45,6 +45,7 @@ public class Asteroid : SpaceObject
             }
 
             GameManager.Instance.AddScore((int)size * 50);
+            AsteroidSpawner.Instance.currentAsteroids.Remove(this);
             Destroy(gameObject);
             VFXManager.Instance.TriggerExplosion(transform);
         }
